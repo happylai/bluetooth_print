@@ -106,6 +106,7 @@ public class PrintContent {
 
             int width = (int)(config.get("width")==null?60:config.get("width")); // 单位：mm
             int height = (int)(config.get("height")==null?75:config.get("height")); // 单位：mm
+            int size = (int)(config.get("size")==null?10:config.get("size")); // 单位：mm
             int gap = (int)(config.get("gap")==null?0:config.get("gap")); // 单位：mm
 
             // 设置标签尺寸宽高，按照实际尺寸设置 单位mm
@@ -142,7 +143,7 @@ public class PrintContent {
                   }else if("barcode".equals(type)){
                         tsc.add1DBarcode(x, y, LabelCommand.BARCODETYPE.CODE128, 100, LabelCommand.READABEL.EANBEL, LabelCommand.ROTATION.ROTATION_0, content);
                   }else if("qrcode".equals(type)){
-                        tsc.addQRCode(x,y, LabelCommand.EEC.LEVEL_L, 5, LabelCommand.ROTATION.ROTATION_0, content);
+                        tsc.addQRCode(x,y, LabelCommand.EEC.LEVEL_L, size, LabelCommand.ROTATION.ROTATION_0, content);
                   }else if("image".equals(type)){
                         byte[] bytes = Base64.decode(content, Base64.DEFAULT);
                         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
